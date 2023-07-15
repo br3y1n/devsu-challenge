@@ -6,7 +6,7 @@ describe("RootLayout tests:", () => {
     render(
       <RootLayout>
         <h1>Children</h1>
-      </RootLayout>
+      </RootLayout>,
     );
 
     const children = screen.getByText("Children");

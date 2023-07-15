@@ -6,7 +6,7 @@ const config: Config = {
     "@/(.*)": "<rootDir>/src/$1",
     "\\.(css|less|scss|sass)$": "identity-obj-proxy",
     "next/font/(.*)": require.resolve(
-      "next/dist/build/jest/__mocks__/nextFontMock.js"
+      "next/dist/build/jest/__mocks__/nextFontMock.js",
     ),
   },
   testEnvironment: "jest-environment-jsdom",
