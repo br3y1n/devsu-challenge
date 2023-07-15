@@ -4,6 +4,10 @@ const config: Config = {
   verbose: true,
   moduleNameMapper: {
     "@/(.*)": "<rootDir>/src/$1",
+    "@components/(.*)": "<rootDir>/src/components/$1",
+    "@app/(.*)": "<rootDir>/src/app/$1",
+    "@enums": "<rootDir>/src/enums",
+    "@fonts": "<rootDir>/src/assets/fonts",
     "\\.(css|less|scss|sass)$": "identity-obj-proxy",
     "next/font/(.*)": require.resolve(
       "next/dist/build/jest/__mocks__/nextFontMock.js",
@@ -16,7 +20,7 @@ const config: Config = {
     "^.+\\.tsx?$": [
       "ts-jest",
       {
-        tsConfig: "./tsconfig.test.json",
+        tsconfig: "./tsconfig.test.json",
       },
     ],
   },

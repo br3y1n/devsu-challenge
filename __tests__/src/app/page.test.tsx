@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Home from "@/app/page";
+import Home from "@app/page";
 
 describe("RootLayout tests:", () => {
   it("should be render  header with a banco image and 1 main", () => {
