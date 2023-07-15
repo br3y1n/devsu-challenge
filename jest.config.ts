@@ -12,7 +12,14 @@ const config: Config = {
   testEnvironment: "jest-environment-jsdom",
   collectCoverageFrom: ["./src/**/*.{js,jsx,ts,tsx}"],
   setupFilesAfterEnv: ["@testing-library/jest-dom"],
-  transform: { "^.+\\.tsx?$": "ts-jest" },
+  transform: {
+    "^.+\\.tsx?$": [
+      "ts-jest",
+      {
+        tsConfig: "./tsconfig.test.json",
+      },
+    ],
+  },
   coverageThreshold: {
     global: {
       branches: 100,
