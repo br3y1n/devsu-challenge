@@ -1,28 +1,28 @@
 "use client";
-import { openSans } from "@fonts";
 import { VariantEnum } from "@enums";
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 
-const Button = styled.button<{ variant: VariantEnum }>`
-  font-family: ${openSans.style.fontFamily};
-  padding: 20px 25px;
-  border: none;
-  color: #0a225c;
-  font-weight: bold;
-  background-color: ${(props) =>
-    props.variant === VariantEnum.PRIMARY ? "#ffdf00" : "#f0f0f0"};
-  border-radius: 5px;
-  cursor: pointer;
+const Button = styled.button<{ $variant: VariantEnum }>`
+  ${({ theme, $variant }) => css`
+    font-family: ${theme.fontFamily};
+    font-size: ${theme.fontSize};
+    padding: 20px 25px;
+    border: none;
+    color: ${theme.color.blue};
+    font-weight: bold;
+    background-color: ${theme.color[$variant]};
+    border-radius: 5px;
+    cursor: pointer;
 
-  &:hover:not(:disabled) {
-    background-color: ${(props) =>
-      props.variant === VariantEnum.PRIMARY ? "#f0d000" : "#e4e4e4"};
-  }
+    &:hover:not(:disabled) {
+      mix-blend-mode: multiply;
+    }
 
-  &:disabled {
-    opacity: 0.6;
-    cursor: no-drop;
-  }
+    &:disabled {
+      opacity: 0.25;
+      cursor: not-allowed;
+    }
+  `}
 `;
 
 export default Button;

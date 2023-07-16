@@ -24,7 +24,9 @@
       "@components/*": ["./src/components/*"],
       "@app/*": ["./src/app/*"],
       "@enums": ["./src/enums"],
-      "@fonts": ["./src/assets/fonts"]
+      "@themes/*": ["./src/themes/*"],
+      "@fonts": ["./src/assets/fonts"],
+      "@test-utils": ["./test.utils.tsx"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

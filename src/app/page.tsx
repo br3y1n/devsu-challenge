@@ -11,7 +11,8 @@ const Home = () => (
         src="/images/banco-pichincha.webp"
         alt="banco pichincha"
         width={200}
-        height={39}
+        height={49}
+        priority
       />
     </header>
 
@@ -20,14 +21,21 @@ const Home = () => (
         // TODO remove all
       }
       <h3>TextField:</h3>
-      <TextField label="ID" id="id" />
+      <TextField label="ID" id="id" disabled />
+
+      <br />
+      <hr />
+      <br />
+
+      <h3>TextField with error:</h3>
+      <TextField label="ID" id="id" error helperText="ID invalido" />
 
       <br />
       <hr />
       <br />
 
       <h3>Button Secondary:</h3>
-      <Button variant={VariantEnum.SECONDARY}>Agregar</Button>
+      <Button $variant={VariantEnum.SECONDARY}>Agregar</Button>
 
       <br />
       <br />
@@ -35,7 +43,7 @@ const Home = () => (
       <br />
 
       <h3>Button Primary disabled:</h3>
-      <Button variant={VariantEnum.PRIMARY} disabled>
+      <Button $variant={VariantEnum.PRIMARY} disabled>
         Reiniciar
       </Button>
 
