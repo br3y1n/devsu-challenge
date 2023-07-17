@@ -8,6 +8,7 @@ const config: Config = {
     "@app/(.*)": "<rootDir>/src/app/$1",
     "@enums": "<rootDir>/src/enums",
     "@themes/(.*)": "<rootDir>/src/themes/$1",
+    "@hooks/(.*)": "<rootDir>/src/hooks/$1",
     "@fonts": "<rootDir>/src/assets/fonts",
     "@test-utils": "<rootDir>/test.utils.tsx",
     "\\.(css|less|scss|sass)$": "identity-obj-proxy",
@@ -18,9 +19,7 @@ const config: Config = {
   testEnvironment: "jest-environment-jsdom",
   collectCoverageFrom: ["./src/**/*.{js,jsx,ts,tsx}"],
   setupFilesAfterEnv: ["@testing-library/jest-dom"],
-  coveragePathIgnorePatterns: [
-    "./src/components/StyledComponentsRegistry/StyledComponentsRegistry.tsx",
-  ],
+  coveragePathIgnorePatterns: ["./src/components/StyledComponentsRegistry/*"],
   transform: {
     "^.+\\.tsx?$": [
       "ts-jest",

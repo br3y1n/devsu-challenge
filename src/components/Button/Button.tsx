@@ -1,28 +1,17 @@
 "use client";
-import { VariantEnum } from "@enums";
-import { css, styled } from "styled-components";
+import { ForwardedRef, forwardRef } from "react";
+import { IButtonProps as IButtonProps } from "./Button.interfaces";
+import { ButtonStyled } from "./Button.styles";
 
-const Button = styled.button<{ $variant: VariantEnum }>`
-  ${({ theme, $variant }) => css`
-    font-family: ${theme.fontFamily};
-    font-size: ${theme.fontSize};
-    padding: 20px 25px;
-    border: none;
-    color: ${theme.color.blue};
-    font-weight: bold;
-    background-color: ${theme.color[$variant]};
-    border-radius: 5px;
-    cursor: pointer;
-
-    &:hover:not(:disabled) {
-      mix-blend-mode: multiply;
-    }
-
-    &:disabled {
-      opacity: 0.25;
-      cursor: not-allowed;
-    }
-  `}
-`;
+const Button = forwardRef(
+  (
+    { children, variant, ...otherProps }: IButtonProps,
+    ref: ForwardedRef<HTMLButtonElement>,
+  ) => (
+    <ButtonStyled $variant={variant} ref={ref} {...otherProps}>
+      {children}
+    </ButtonStyled>
+  ),
+);
 
 export default Button;

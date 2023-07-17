@@ -1,12 +1,20 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+/* istanbul ignore file*/
+import InfoMenuButton from "@components/InfoMenuButton/InfoMenuButton";
 import Button from "@components/Button/Button";
+import DotsButton from "@components/DotsButton/DotsButton";
+import InfoIcon from "@components/InfoIcon/InfoIcon";
+import Logo from "@components/Logo/Logo";
+import Select from "@components/Select/Select";
+import TextField from "@components/TextField/TextField";
+import Tooltip from "@components/Tooltip/Tooltip";
 import { VariantEnum } from "@enums";
-import TextField from "@/components/TextField/TextField";
+import Image from "next/image";
+import { HeaderStyled, MainStyled } from "./page.styles";
 
 const Home = () => (
   <>
-    <header className={styles.header}>
+    <HeaderStyled>
       <Image
         src="/images/banco-pichincha.webp"
         alt="banco pichincha"
@@ -14,9 +22,9 @@ const Home = () => (
         height={49}
         priority
       />
-    </header>
+    </HeaderStyled>
 
-    <main className={styles.main}>
+    <MainStyled>
       {
         // TODO remove all
       }
@@ -35,7 +43,7 @@ const Home = () => (
       <br />
 
       <h3>Button Secondary:</h3>
-      <Button $variant={VariantEnum.SECONDARY}>Agregar</Button>
+      <Button variant={VariantEnum.SECONDARY}>Agregar</Button>
 
       <br />
       <br />
@@ -43,7 +51,7 @@ const Home = () => (
       <br />
 
       <h3>Button Primary disabled:</h3>
-      <Button $variant={VariantEnum.PRIMARY} disabled>
+      <Button variant={VariantEnum.PRIMARY} disabled>
         Reiniciar
       </Button>
 
@@ -53,32 +61,65 @@ const Home = () => (
       <br />
 
       <h3>Dots button:</h3>
-      <p>coming soon...</p>
+      <DotsButton />
 
       <br />
       <br />
       <hr />
       <br />
 
-      <h3>Menu:</h3>
-      <p>coming soon...</p>
+      <h3>InfoIcon:</h3>
+      <InfoIcon />
 
       <br />
       <br />
       <hr />
       <br />
 
-      <h3>InfoIcong:</h3>
-      <p>coming soon...</p>
+      <h3>Logo:</h3>
+      <Logo
+        alt="Empanadas"
+        src="https://img-global.cpcdn.com/recipes/93eb395044826742/400x400cq70/photo.jpg"
+      />
 
       <br />
       <br />
       <hr />
       <br />
 
-      <h3>Table:</h3>
-      <p>coming soon...</p>
-    </main>
+      <h3>Select:</h3>
+      <Select
+        options={[
+          { selected: false, text: "1", value: 1 },
+          { selected: true, text: "2", value: 2 },
+          { selected: false, text: "3", value: 3 },
+        ]}
+        onChange={() => {}}
+      />
+
+      <br />
+      <br />
+      <hr />
+      <br />
+
+      <Tooltip content="Este es un tooltip">
+        <h3 style={{ display: "inline-block" }}>Tooltip:</h3>
+      </Tooltip>
+
+      <br />
+      <br />
+      <hr />
+      <br />
+
+      <h3>InfoMenuButton:</h3>
+      <InfoMenuButton
+        items={[
+          { text: "menu 1", onClick: () => {} },
+          { text: "menu 2", onClick: () => {} },
+          { text: "menu 3", onClick: () => {} },
+        ]}
+      />
+    </MainStyled>
   </>
 );
 

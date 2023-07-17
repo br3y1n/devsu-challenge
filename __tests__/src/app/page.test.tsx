@@ -1,7 +1,7 @@
 import { render, screen } from "@test-utils";
 import Home from "@app/page";
 
-describe("RootLayout tests:", () => {
+describe("Home tests:", () => {
   it("should be render  header with a banco image and 1 main", () => {
     const { container } = render(<Home />);
     const image = screen.getByAltText("banco pichincha");

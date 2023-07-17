@@ -4,7 +4,7 @@ import { render, screen } from "@test-utils";
 
 describe("Button tests:", () => {
   it("should be render a button", () => {
-    render(<Button $variant={VariantEnum.PRIMARY}>Text</Button>);
+    render(<Button variant={VariantEnum.PRIMARY}>Text</Button>);
 
     const button = screen.getByRole("button");
 

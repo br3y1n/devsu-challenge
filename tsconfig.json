@@ -26,6 +26,7 @@
       "@enums": ["./src/enums"],
       "@themes/*": ["./src/themes/*"],
       "@fonts": ["./src/assets/fonts"],
+      "@hooks/*": ["./src/hooks/*"],
       "@test-utils": ["./test.utils.tsx"]
     }
   },
