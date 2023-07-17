@@ -1,20 +1,23 @@
 import { css, styled } from "styled-components";
 
 const DotsButtonContainerStyled = styled.button`
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  ${({ theme }) => css`
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: ${theme.color.white};
 
-  &:hover {
-    mix-blend-mode: multiply;
-  }
+    &:hover {
+      background-color: ${theme.color.lightGray};
+    }
+  `}
 `;
 
 const DotStyled = styled.span`

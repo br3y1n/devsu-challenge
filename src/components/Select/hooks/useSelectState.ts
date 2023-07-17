@@ -7,9 +7,9 @@ const useSelectState = ({
   options,
   onChange,
 }: ISelectProps): IUseSelectState => {
-  const [selectedOption, setSelectedOption] = useState(
-    options.find((option) => option.selected) ?? options[0],
-  );
+  const selectedOption =
+    options.find((option) => option.selected) ?? options[0];
+
   const [open, setOpen] = useState(false);
 
   const onClose = () => {
@@ -17,7 +17,6 @@ const useSelectState = ({
   };
 
   const handleOptionSelect = (option: ISelectOption) => {
-    setSelectedOption(option);
     onChange(option);
     onClose();
   };

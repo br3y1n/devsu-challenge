@@ -22,6 +22,7 @@ const InputStyled = styled.input<IInputStyledProps>`
 
     &:disabled {
       border-color: ${theme.color.gray};
+      background-color: ${theme.color.lightGray};
     }
 
     ${$withError

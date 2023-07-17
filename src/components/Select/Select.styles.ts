@@ -13,7 +13,7 @@ const SelectContainer = styled.div`
     padding: 0;
     height: 30px;
     min-width: 70px;
-    border: 2px solid ${theme.color.gray};
+    border: 2px solid ${theme.color.lightGray};
     border-radius: ${theme.borderRadius};
     font-family: ${theme.fontFamily};
     font-size: 14px;

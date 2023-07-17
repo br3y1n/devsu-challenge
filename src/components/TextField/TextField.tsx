@@ -18,6 +18,8 @@ const TextField = (props: ITextFieldProps) => {
     label,
     error,
     placeholder,
+    onChange,
+    value,
     helperText,
   } = useTextFieldState(props);
 
@@ -31,6 +33,8 @@ const TextField = (props: ITextFieldProps) => {
         placeholder={placeholder}
         disabled={disabled}
         $withError={error}
+        onChange={onChange}
+        value={value}
         required
       />
 

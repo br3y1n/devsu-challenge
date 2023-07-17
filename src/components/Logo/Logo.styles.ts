@@ -2,8 +2,8 @@ import { styled } from "styled-components";
 
 const LogoStyled = styled.img`
   border-radius: 50%;
-  height: 45px;
-  width: 45px;
+  height: 35px;
+  width: 35px;
 `;
 
 export { LogoStyled };

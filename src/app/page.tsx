@@ -1,126 +1,100 @@
 "use client";
-/* istanbul ignore file*/
-import InfoMenuButton from "@components/InfoMenuButton/InfoMenuButton";
+import { getColumns, getRows } from "@/adapters/table";
+import { mapProductIn } from "@adapters/products";
 import Button from "@components/Button/Button";
-import DotsButton from "@components/DotsButton/DotsButton";
-import InfoIcon from "@components/InfoIcon/InfoIcon";
-import Logo from "@components/Logo/Logo";
-import Select from "@components/Select/Select";
+import Table from "@components/Table/Table";
 import TextField from "@components/TextField/TextField";
-import Tooltip from "@components/Tooltip/Tooltip";
-import { VariantEnum } from "@enums";
+import { RouteEnum, VariantEnum } from "@enums";
+import { IProduct } from "@interfaces/product.interfaces";
 import Image from "next/image";
-import { HeaderStyled, MainStyled } from "./page.styles";
+import { useRouter } from "next/navigation";
+import { ChangeEventHandler, useEffect, useState } from "react";
+import {
+  HeaderStyled,
+  MainStyled,
+  TableContainer,
+  TopContainer,
+} from "./page.styles";
+import { getProducts, removeProducts } from "@/adapters/api";
 
-const Home = () => (
-  <>
-    <HeaderStyled>
-      <Image
-        src="/images/banco-pichincha.webp"
-        alt="banco pichincha"
-        width={200}
-        height={49}
-        priority
-      />
-    </HeaderStyled>
+const Home = () => {
+  const [filterText, setFilterText] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState<IProduct[]>([]);
 
-    <MainStyled>
-      {
-        // TODO remove all
-      }
-      <h3>TextField:</h3>
-      <TextField label="ID" id="id" disabled />
+  const filteredValues = products.filter(({ logo, id, ...product }) =>
+    Object.values(product).some((value) =>
+      value.toLocaleLowerCase().includes(filterText.toLocaleLowerCase()),
+    ),
+  );
 
-      <br />
-      <hr />
-      <br />
+  const getData = async () => {
+    try {
+      const result = await getProducts();
+      setProducts(result);
+    } catch {}
+  };
 
-      <h3>TextField with error:</h3>
-      <TextField label="ID" id="id" error helperText="ID invalido" />
+  const onRemove = async (id: string) => {
+    try {
+      setLoading(true);
 
-      <br />
-      <hr />
-      <br />
+      await removeProducts(id);
+      await getData();
 
-      <h3>Button Secondary:</h3>
-      <Button variant={VariantEnum.SECONDARY}>Agregar</Button>
+      setLoading(false);
+    } catch {
+      setLoading(false);
+    }
+  };
 
-      <br />
-      <br />
-      <hr />
-      <br />
+  const router = useRouter();
+  const rows = getRows(filteredValues, onRemove, router);
+  const columns = getColumns();
 
-      <h3>Button Primary disabled:</h3>
-      <Button variant={VariantEnum.PRIMARY} disabled>
-        Reiniciar
-      </Button>
+  const goAdd = () => {
+    router.push(RouteEnum.ADD);
+  };
 
-      <br />
-      <br />
-      <hr />
-      <br />
+  const onChangefilter: ChangeEventHandler<HTMLInputElement> = (event) =>
+    setFilterText(event.currentTarget.value);
 
-      <h3>Dots button:</h3>
-      <DotsButton />
+  useEffect(() => {
+    getData().finally(() => setLoading(false));
+  }, []);
 
-      <br />
-      <br />
-      <hr />
-      <br />
+  return (
+    <>
+      <HeaderStyled $withBackground>
+        <Image
+          src="/images/banco-pichincha.webp"
+          alt="banco pichincha"
+          width={200}
+          height={49}
+          priority
+        />
+      </HeaderStyled>
 
-      <h3>InfoIcon:</h3>
-      <InfoIcon />
+      <MainStyled>
+        <TopContainer>
+          <TextField
+            id="search"
+            placeholder="Search..."
+            value={filterText}
+            onChange={onChangefilter}
+          />
 
-      <br />
-      <br />
-      <hr />
-      <br />
+          <Button variant={VariantEnum.PRIMARY} onClick={goAdd}>
+            Agregar
+          </Button>
+        </TopContainer>
 
-      <h3>Logo:</h3>
-      <Logo
-        alt="Empanadas"
-        src="https://img-global.cpcdn.com/recipes/93eb395044826742/400x400cq70/photo.jpg"
-      />
-
-      <br />
-      <br />
-      <hr />
-      <br />
-
-      <h3>Select:</h3>
-      <Select
-        options={[
-          { selected: false, text: "1", value: 1 },
-          { selected: true, text: "2", value: 2 },
-          { selected: false, text: "3", value: 3 },
-        ]}
-        onChange={() => {}}
-      />
-
-      <br />
-      <br />
-      <hr />
-      <br />
-
-      <Tooltip content="Este es un tooltip">
-        <h3 style={{ display: "inline-block" }}>Tooltip:</h3>
-      </Tooltip>
-
-      <br />
-      <br />
-      <hr />
-      <br />
-
-      <h3>InfoMenuButton:</h3>
-      <InfoMenuButton
-        items={[
-          { text: "menu 1", onClick: () => {} },
-          { text: "menu 2", onClick: () => {} },
-          { text: "menu 3", onClick: () => {} },
-        ]}
-      />
-    </MainStyled>
-  </>
-);
+        <TableContainer>
+          <Table columns={columns} rows={rows} loading={loading} />
+        </TableContainer>
+      </MainStyled>
+    </>
+  );
+};
 
 export default Home;

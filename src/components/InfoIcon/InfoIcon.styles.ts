@@ -10,6 +10,7 @@ const InfoIconContainerStyled = styled.div`
     align-items: center;
     justify-content: center;
     cursor: help;
+    margin: 0px 10px;
   `}
 `;
 

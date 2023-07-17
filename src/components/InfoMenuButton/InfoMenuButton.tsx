@@ -8,16 +8,7 @@ const InfoMenuButton = ({ items }: IInfoMenuButtonProps) => {
 
   return (
     <>
-      <DotsButton
-        ref={ref}
-        onClick={() => {
-          toggleOpen();
-
-          console.log("entro");
-        }}
-      >
-        Hola
-      </DotsButton>
+      <DotsButton ref={ref} onClick={toggleOpen} />
 
       {open && <Menu anchorEl={ref} onClose={onClose} items={items} />}
     </>

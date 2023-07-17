@@ -1,3 +1,5 @@
+import { ChangeEventHandler } from "react";
+
 interface ITextFieldProps {
   id: string;
   label?: string;
@@ -6,6 +8,8 @@ interface ITextFieldProps {
   error?: boolean;
   disabled?: boolean;
   fullWidth?: boolean;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  value: string;
 }
 
 interface IInputHelperTextStyledProps {
